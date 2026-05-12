@@ -131,7 +131,9 @@ namespace FT_EClaim.Module.Controllers
                         if (GeneralSettings.B1Post)
                             if (GeneralSettings.oCompany.InTransaction)
                                 GeneralSettings.oCompany.EndTransaction(SAPbobsCOM.BoWfTransOpt.wf_RollBack);
-                        ios.Rollback(false);
+                        //ios.Rollback(false);
+                        ios.CommitChanges();
+
                     }
                     if (GeneralSettings.B1Post)
                         if (GeneralSettings.oCompany.InTransaction)
@@ -156,7 +158,8 @@ namespace FT_EClaim.Module.Controllers
                                 if (GeneralSettings.B1Post)
                                     if (GeneralSettings.oCompany.InTransaction)
                                         GeneralSettings.oCompany.EndTransaction(SAPbobsCOM.BoWfTransOpt.wf_RollBack);
-                                ios.Rollback(false);
+                                //ios.Rollback(false);
+                                ios.CommitChanges();
                                 break;
                             }
                         }
@@ -192,7 +195,7 @@ namespace FT_EClaim.Module.Controllers
             //DetailView dv = Application.CreateDetailView(ios, iobj);
             //dv.ViewEditMode = ViewEditMode.View;
             //svp.CreatedView = dv;
-
+            string errormsg = "";
             if (iobj.IsClosed && !iobj.IsPosted)
             {
                 iobj.PaidDate = (DateTime)_postdate;
@@ -200,12 +203,12 @@ namespace FT_EClaim.Module.Controllers
                     if (Company.PostToDocument == PostToDocuments.JE)
                     {
                         if (Company.EClaimSAPDoc == EClaimSAPDocs.Document)
-                            temp = genCon.PostJEtoSAP(iobj);
+                            temp = genCon.PostJEtoSAP(iobj, ref errormsg);
                         else if (Company.EClaimSAPDoc == EClaimSAPDocs.Draft)
                             temp = genCon.PostJVtoSAP(iobj);
                     }
                     else if (Company.PostToDocument == PostToDocuments.APINV)
-                        temp = genCon.PostAPIVtoSAP(iobj);
+                        temp = genCon.PostAPIVtoSAP(iobj, ref errormsg);
                 else
                     temp = genCon.DelayPostToSAP(iobj);
 
@@ -229,6 +232,7 @@ namespace FT_EClaim.Module.Controllers
                 }
                 else if (temp == -1)
                 {
+                    iobj.SAPPostCancelRemarks = errormsg;
                 }
             }
 
@@ -270,7 +274,8 @@ namespace FT_EClaim.Module.Controllers
                         if (GeneralSettings.B1Post)
                             if (GeneralSettings.oCompany.InTransaction)
                                 GeneralSettings.oCompany.EndTransaction(SAPbobsCOM.BoWfTransOpt.wf_RollBack);
-                        ios.Rollback(false);
+                        //ios.Rollback(false);
+                        ios.CommitChanges();
                     }
                     if (GeneralSettings.B1Post)
                         if (GeneralSettings.oCompany.InTransaction)
@@ -295,7 +300,8 @@ namespace FT_EClaim.Module.Controllers
                                 if (GeneralSettings.B1Post)
                                     if (GeneralSettings.oCompany.InTransaction)
                                         GeneralSettings.oCompany.EndTransaction(SAPbobsCOM.BoWfTransOpt.wf_RollBack);
-                                ios.Rollback(false);
+                                //ios.Rollback(false);
+                                ios.CommitChanges();
                                 break;
                             }
                         }

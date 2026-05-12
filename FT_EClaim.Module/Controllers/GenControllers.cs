@@ -165,7 +165,7 @@ namespace FT_EClaim.Module.Controllers
             }
             return 0;
         }
-        public int PostAPIVtoSAP(FT_EClaim.Module.BusinessObjects.ClaimTrxs oTargetDoc)
+        public int PostAPIVtoSAP(FT_EClaim.Module.BusinessObjects.ClaimTrxs oTargetDoc, ref string temp)
         {
             // return 0 = post nothing
             // return -1 = posting error
@@ -173,7 +173,7 @@ namespace FT_EClaim.Module.Controllers
             try
             {
                 if (oTargetDoc.IsSAPPosted) return 0;
-                string temp = "";
+                //string temp = "";
 
                 if (oTargetDoc.IsClosed && !oTargetDoc.IsPosted)
                 {
@@ -455,14 +455,14 @@ namespace FT_EClaim.Module.Controllers
             showMsg("Error", "JV not allowed", InformationType.Error);
             return -1;
         }
-        public int PostJEtoSAP(FT_EClaim.Module.BusinessObjects.ClaimTrxs oTargetDoc)
+        public int PostJEtoSAP(FT_EClaim.Module.BusinessObjects.ClaimTrxs oTargetDoc, ref string temp)
         {
             // return 0 = post nothing
             // return -1 = posting error
             // return > 0 = posting successful
             try
             {
-                string temp = "";
+                //string temp = "";
                 string remarks = "";
                 if (oTargetDoc.IsSAPPosted) return 0;
 

@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem \"C:\\\\Project\\\\FT_EClaim\" -Filter \"*.csproj\" -Recurse)",
+      "Bash(Select-Object FullName)"
+    ]
+  }
+}
