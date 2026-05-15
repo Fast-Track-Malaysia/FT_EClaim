@@ -447,6 +447,7 @@ namespace FT_EClaim.Module.BusinessObjects
 
         private string _Remarks;
         [Index(16), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(true)]
+        [XafDisplayName("Title")]
         //[Appearance("RefNo", Enabled = false, Criteria = "(not IsNew and not IsRequestorChecking) or DocPassed or Accepted")]
         [RuleRequiredField(DefaultContexts.Save)]
         [Appearance("Remarks", Enabled = false, Criteria = "IsProtectContect")]

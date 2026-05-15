@@ -487,7 +487,7 @@ namespace FT_EClaim.Module.BusinessObjects
 
         [Association("ClaimTrxDetails-ClaimTrxAttachments"), DevExpress.Xpo.Aggregated]
         [XafDisplayName("Attachment")]
-        [Appearance("ClaimTrxAttachment", Enabled = false, Criteria = "IsNew")]
+        [Appearance("ClaimTrxAttachment", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide)]
         public XPCollection<ClaimTrxAttachments> ClaimTrxAttachment
         {
             get { return GetCollection<ClaimTrxAttachments>("ClaimTrxAttachment"); }

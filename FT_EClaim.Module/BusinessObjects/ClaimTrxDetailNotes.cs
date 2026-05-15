@@ -418,6 +418,16 @@ namespace FT_EClaim.Module.BusinessObjects
             }
         }
 
+        [ImageEditor(ListViewImageEditorMode = ImageEditorMode.PopupPictureEdit,
+             DetailViewImageEditorMode = ImageEditorMode.PictureEdit,
+             ListViewImageEditorCustomHeight = 40)]
+        [Index(90), VisibleInListView(true), VisibleInDetailView(true), VisibleInLookupListView(false)]
+        public byte[] Attachment
+        {
+            get { return GetPropertyValue<byte[]>(nameof(Attachment)); }
+            set { SetPropertyValue<byte[]>(nameof(Attachment), value); }
+        }
+
         private ClaimTrxDetails _ClaimTrxDetail;
         [Association("ClaimTrxDetails-ClaimTrxDetailNotes")]
         [Index(99), VisibleInListView(false), VisibleInDetailView(true), VisibleInLookupListView(false)]
